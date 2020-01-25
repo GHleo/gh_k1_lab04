@@ -27,7 +27,7 @@ int main() {
     }
 
 
-/*    double a, b, h;
+/*    double a, b, h; denis
     cin >> a >> b>> h;
     for (double x = a; x <= b; x += h) {
         cout << fixed << setprecision(3) <<x<< " " << 3 * sin(x) << endl;
