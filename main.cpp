@@ -12,6 +12,7 @@ double f_24(double x){
 
 int main() {
     double x, XN, XK, DX; //x -аргумент функции; XN, XK - начальное и конечное значение для аргумента соответсвенно; DX - шаг
+    double a,b; //концы отрезка
     cout << "Введите начальное значение для аргумента: ";
     cin >> XN;
     cout << "Введите конечное значение для аргумента: ";
@@ -23,14 +24,22 @@ int main() {
 
        cout  << setw(10) << x;//манипулятор setw(int n) - задает ширину столбца для аргумента
        //cout << '\t';
-       cout << setw(18) << f_24(x) << endl;// << setw(18)<<endl;//манипулятор setw(int n) - задает ширину столбца для аргумента
-       // cout << f_24(x) <<endl;
-
-/*         cout << fixed;//количеству знаков после запятой перед precision
-         cout.precision(13);
-         cout <<f_24(x)<<endl;*/
+       cout.width(18);// cout.width - member function
+       cout << setprecision(10) << f_24(x) << endl;// << setw(18) - задает ширину столбца для значения
     }
 
+    cout << "Вводим границу поиска [a, b]" << endl;
+    cin >> a >> b;
+    double min = f_24(a);
+    double eps = fabs(a - b) / 100; //
+
+    for (a += eps; a <= b; a += eps)
+    {
+        if (f_24(a) < min)
+            min = f_24(a);
+    }
+
+    cout << "min = " << min;
     return 0;
     }
 
