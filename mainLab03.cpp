@@ -18,7 +18,7 @@ int main() {
     cin >> a;
     cout << "Введите конечное значение для аргумента: ";
     cin >> b;
-/*        for ( x= a; x <= b; x += 0.001) {
+        for ( x= a; x <= b; x += 0.001) {
             i += 1;
             y = f_3(x);
             if (fabs(y) <= eps) {
@@ -27,20 +27,9 @@ int main() {
                 getchar();
                 exit(0);
             }
-        }*/
+        }
 
 
-    double x=0,y,b;
-    int n;
-    do {
-        y=f_3(x);
-        b=fabs(x-y);
-        x=y;
-        n++;
-    }while (b>=eps && n<100);
-    cout<<"Root x ="<<x<<"\n";
-    cout<<"Iterations n= "<<n<<"\n";
-    getchar();
 
 /*    x = a;
     while(eps < fabs(f_3(x)) && x <= b)
