@@ -25,18 +25,18 @@ int main()
         //Вычисления останавливаем когда добиваемся
         //требуемой точности вычислений eps < fabs(f(x))
         //или же достигаем конца промежутка
-        while(eps < fabs(f(x)) && x <= b)
+        while(eps < fabs(f_2(x)) && x <= b)
             x += dx;
         if(b < x)
             cout<<"[a;b] isn't contain roots\r\n";
         else
         {
             cout<<"root      : "<<x<<"\r\n";
-            cout<<"acuracy e : "<<fabs(f(x))<<"\r\n";
+            cout<<"acuracy e : "<<fabs(f_2(x))<<"\r\n";
         }
         cout<<"Press Y for new input\r\n";
     }
-    while(toupper(getch()) == 'Y');
+    while(toupper(getchar()) == 'Y');
     return 0;
 }
 
