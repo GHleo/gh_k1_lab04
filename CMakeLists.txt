@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(gh_k1_lab04
         mainLab03.cpp
     #mainLab04.cpp
-    #    obmen.cpp
+        #obmen.cpp
        #temp.cpp
 )
