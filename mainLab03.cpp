@@ -21,7 +21,7 @@ double solve(function f_3, function dfx, double x0) {
         x0 = x1;
         x1 = x0 - f_3(x0) / dfx(x0); // последующие приближения
     }
-    return x;
+    return x1;
 }
 int main() {
     i=0;
