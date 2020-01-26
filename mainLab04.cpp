@@ -6,7 +6,6 @@ using namespace std;
 //Величины XN, XK и DX
 
 // расчетная функция
-/*
 double f_24(double x){
     return 1 - x + x*3/6 - x*5/120 - sin(x);
 }
@@ -68,30 +67,7 @@ int main() {
     while(toupper(getchar()) == 'Y');
     return 0;
     }
-*/
 
-const double epsilon = 0.00000001;
-double f(double x)
-{
-    return x-cos(x);
-}
 
-int main()
-{
-    double a, b, c;
-    int k;
-    cin >> a >> b;
-    k = 0;
-    while (b - a > epsilon) {
-        k += 1;
-        c = (a + b) / 2;
-        if (f(b) * f(c) < 0)
-            a = c;
-        else
-            b = c;
-    }
-    cout << (a + b) / 2 << endl;
-    return 0;
-}
 
 

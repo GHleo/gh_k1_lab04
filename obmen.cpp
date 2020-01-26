@@ -54,4 +54,14 @@ int main() {
     return 0;
 }
 // 1. делим отрезок пополам
-
+double x=0,y,b;
+int n;
+do {
+y=f_3(x);
+b=fabs(x-y);
+x=y;
+n++;
+}while (b>=eps && n<100);
+cout<<"Root x ="<<x<<"\n";
+cout<<"Iterations n= "<<n<<"\n";
+getchar();

@@ -13,11 +13,12 @@ double f_3(double x){
     return x - cos(x);
 }
 int main() {
+    i=0;
     cout << "Введите начальное значение для аргумента: ";
     cin >> a;
     cout << "Введите конечное значение для аргумента: ";
     cin >> b;
-        for ( x= a; x <= b; x += eps) {
+/*        for ( x= a; x <= b; x += 0.001) {
             i += 1;
             y = f_3(x);
             if (fabs(y) <= eps) {
@@ -26,7 +27,33 @@ int main() {
                 getchar();
                 exit(0);
             }
-        }
+        }*/
+
+
+    double x=0,y,b;
+    int n;
+    do {
+        y=f_3(x);
+        b=fabs(x-y);
+        x=y;
+        n++;
+    }while (b>=eps && n<100);
+    cout<<"Root x ="<<x<<"\n";
+    cout<<"Iterations n= "<<n<<"\n";
+    getchar();
+
+/*    x = a;
+    while(eps < fabs(f_3(x)) && x <= b)
+        cout << fabs(f_3(x));
+        x += 0.1;
+    if(b < x)
+        cout<<"[a;b] Корней нет\r\n";
+    else
+    {
+        cout<<"Корень      : "<<x<<"\r\n";
+        cout<<"Точность e : "<<fabs(f_3(x))<<"\r\n";
+    }
+    cout<<"Нажмите Y для нового ввода\r\n";*/
 
 
     return 0;
