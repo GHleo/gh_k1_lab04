@@ -5,38 +5,40 @@ using namespace std;
 //x - cos(x) = 0
 //Величины XN, XK и DX
 
+const double eps = 0.00000001; // погрешность
+double x,y,a,b;
 // расчетная функция
-double f_2(double x){
+double f_3(double x){
     return x - cos(x);
 }
-int main()
-{
-    double a,b,eps,x,dx;
-    do
-    {
-        cout<<"Enter diapazone[a;b] of iterations\r\n";
-        cout<<"a = ";cin>>a;
-        cout<<"b = ";cin>>b;
-        cout<<"Enter accuracy e ";cin>>eps;
-        //Шаг определяем по точности вычислений
-        //Погрешность f(x[i]) - f(x[i - 1]) < x[i] - x[i - 1] = h
-        dx = (b - a)*(eps/10);//Мин шаг точность/10
-        x = a;
-        //Вычисления останавливаем когда добиваемся
-        //требуемой точности вычислений eps < fabs(f(x))
-        //или же достигаем конца промежутка
-        while(eps < fabs(f_2(x)) && x <= b)
-            x += dx;
-        if(b < x)
-            cout<<"[a;b] isn't contain roots\r\n";
-        else
-        {
-            cout<<"root      : "<<x<<"\r\n";
-            cout<<"acuracy e : "<<fabs(f_2(x))<<"\r\n";
+int main() {
+
+   // Простая итерация    Хj+1 = Xj - f(Xj).
+/*    int n=0;
+    x=-5;
+//double x=-2.0,y,b,eps=0.000001;
+    do {
+        y=f_3(x);
+        b=fabs(x-y);
+        x=y;
+        n++;
+    }while (b>=eps && n<100);
+    cout<<"Root x ="<<x<<"\n";
+    cout<<"Iterations n= "<<n<<"\n";
+    getchar();
+    return 0;*/
+
+        for ( x= 0.7; x <= 1; x += eps) {
+            y = f_3(x);
+            //cout << "y = " << y << endl;
+            if (fabs(y) <= eps) {
+                cout << "x = " << x << endl;
+                getchar();
+                exit(0);
+            }
         }
-        cout<<"Press Y for new input\r\n";
-    }
-    while(toupper(getchar()) == 'Y');
+
+
     return 0;
 }
 
