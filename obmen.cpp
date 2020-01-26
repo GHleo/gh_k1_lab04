@@ -11,19 +11,23 @@ const double eps = 0.00000001; // погрешность
 /*	int main()
 	{
 
-		double a, b, c;
+	setlocale(LC_ALL, "russian");
+	    double a, b, c;
 		int k;
-		cin >> a >> b;
+		a = 0;
+		b = 10;
 		k = 0;
 		while (b - a > epsilon) {
 			k += 1;
+			
 			c = (a + b) / 2;
 			if (f(b) * f(c) < 0)
 				a = c;
 			else
 				b = c;
 		}
-		cout << (a + b) / 2 << endl;
+		cout << "x" <<"\t"<<"\t"<< setw(24) <<"кол-во итераций:"<< endl;
+		cout << setprecision(8)<< setw(8) <<(a + b) / 2 <<"\t"<<"\t"<<k<< endl;
 		return 0;
 	}*/
 int main() {
