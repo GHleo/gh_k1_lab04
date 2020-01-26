@@ -6,7 +6,8 @@ using namespace std;
 //Величины XN, XK и DX
 
 const double eps = 0.00000001; // погрешность
-double x,y,a,b,i;
+double x,y,a,b;
+int i;
 // расчетная функция
 double f_3(double x){
     return x - cos(x);
