@@ -28,7 +28,7 @@ double metSI(double beginV, double endV) {
 		i += 1;
 		y = f_3(x);
 		if (fabs(y) <= eps) {
-			cout << "ITER Метод простых итераций. Корень = " << x << endl;
+			cout << "Метод простых итераций. Корень = " << x << endl;
 			cout << "ITER Метод простых итераций. Количество итераций = " << i << endl;
 			getchar();
 			exit(0);
