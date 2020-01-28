@@ -2,46 +2,78 @@
 #include <cmath>
 #include <iomanip>
 using namespace std;
-//x - cos(x) = 0
-//Величины XN, XK и DX
 
-const double eps = 0.000001; // погрешность
+double eps;// = 0.000001; // погрешность
 double x,y,a,b;
-int i,k;
+int n,h,con;
 
 // расчетная функция
-double f_3(double x){return x - cos(x);}
+double f_3(double x){
+    if (con == 1) return x - cos(x);
+    if (con == 2) return x - 10 * cos(x);
+}
 double dfx(double x) { return 1+sin(x); } // производная функции
-typedef double(*function)(double x); // задание типа function
+typedef double(*func)(double x); // задание типа function
 
-double solve(function f_3, function dfx, double x0) {
+double metodN(func f_3, func dfx, double x0) {
     double x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
     while (fabs(x1 - x0) > eps) { // пока не достигнута точность 0.000001
-        k++;
+        n++;
         x0 = x1;
         x1 = x0 - f_3(x0) / dfx(x0); // последующие приближения
     }
     return x1;
 }
+void metodSI(double a) {
+    int i;
+    for (x = a; x <= 1; x += eps) {
+        i += 1;
+        y = f_3(x);
+        if (fabs(y) <= eps) {
+            cout << "Метод простых итераций. Корень = " << x << endl;
+            cout << "Метод простых итераций. Количество итераций = " << i << endl;
+            getchar();
+            exit(0);
+        }
+    }
+}
+// Половинное деление
+double metodHalf(double a, double b) {
+    double half;
+    half = (a + b) * 0.5;
+    while ((fabs(a - b) > eps) && (f_3(half) != 0))
+    {
+        if (f_3(a) * f_3(half) < 0)
+            b = half;
+        else
+            a = half;
+        half = (a + b) / 2;
+        h++;
+    }
+    return half;
+}
 int main() {
-    i=0;
-    cout << "Метод Ньютона. Корень = " << solve(f_3, dfx, 1)<< endl;
-    cout << "Метод Ньютона. Количество итераций = " << k << endl;
-
+    int i=0;
+    cout << "1-е Уравнение x - cos(x) = 0" << endl;
+    cout << "2-е Уравнение x - 10cos(x) = 0" << endl;
+    cout << "Введите конечное значение для уравнения, для 1-го = 1, для 2-го = 10: "<< endl;
+    cin >> con;
+    cout << "Введите погрешность 0.000001 или 0.00000001: "<< endl;
+    cin >> eps;
     cout << "Введите начальное значение для аргумента: ";
     cin >> a;
     cout << "Введите конечное значение для аргумента: ";
     cin >> b;
-        for ( x= a; x <= b; x += eps) {
-            i += 1;
-            y = f_3(x);
-            if (fabs(y) <= eps) {
-                cout << "Метод простых итераций. Корень = " << x << endl;
-                cout << "Метод простых итераций. Количество итераций = " << i << endl;
-                getchar();
-                exit(0);
-            }
-        }
+    cout << "----------------------------------------------------------------------"<< endl;
+    // Метод Ньютона
+    cout << "Метод Ньютона. Корень = " << metodN(f_3, dfx, 1)<< endl;
+    cout << "Метод Ньютона. Количество итераций = " << n << endl;
+    cout << "----------------------------------------------------------------------"<< endl;
+    // Метод Ньютона
+    cout << "Метод половинного деления. Корень = " << metodHalf(a,b) << endl;
+    cout << "Метод половинного деления. Количество итераций = " << h << endl;
+    cout << "----------------------------------------------------------------------"<< endl;
+    metodSI(a); // Метод простых итераций
 
     return 0;
 }
