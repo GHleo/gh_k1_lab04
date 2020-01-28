@@ -12,7 +12,8 @@ double f_3(double x){
     if (con == 1) return x - cos(x);
     if (con == 2) return x - 10 * cos(x);
 }
-double dfx(double x) { return 1+sin(x); } // производная функции
+// производная функции
+double dfx(double x) { return 1+sin(x); }
 typedef double(*func)(double x); // задание типа function
 
 double metodN(func f_3, func dfx, double x0) {
