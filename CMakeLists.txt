@@ -10,4 +10,5 @@ add_executable(gh_k1_lab04
        #temp.cpp
         #Sdana_lab4code.cpp
         #Sdana_lab5code.cpp
-        mainLab05.cpp)
+        mainLab05.cpp
+        )

@@ -12,10 +12,16 @@ double dRandom( int a, int b ) // вещественное из [a,b]
     return a + ( b - a ) * rand() / (double)RAND_MAX;
 }
 
+//функция вывода массима на печать
 void m_out(int* a, int n) {
     for (int i = 1; i <= n; i++)
         cout << a[i] << " ";
     cout << endl;
+}
+//ункция вывода массима в обратном порядке на печать
+void m_turn_out(int* a, int n) {
+    for (int i = 1; i <= n / 2; i++)
+        swap(a[i], a[n - i + 1]); //Процедура swap производит обмен значений двух объектов, & - ссылка на указатель а
 }
 
 void buble(int* a, int n) {
@@ -39,18 +45,19 @@ int main()
     srand(time(0));
     setlocale(LC_ALL, "russian");
     int r;
+    int* m = new int[r]; //создаем указатель на массив целочисленного типа
+    //int* arr2 = new int[n];
 
     cout << "Введите кол-во элементов массива: ";
     cin >> r;
-
-    int* m = new int[r];
-    //int* arr2 = new int[n];
 
     for (int i = 1; i <= r; i++)
         m[i] = rand() % 100;         //диапозон от  0 to 99
     //arr[r] = iRandom(1,9);
 
-    m_out(m,r);
+    m_out(m,r);//вывод массива на печать (случайный порядок)
+    m_turn_out(m,r);
+    m_out(m,r);//вывод массива на печать (обратный порядок)
     buble(m,r);
 
 /*    const int n = 13; // количество элементов в массиве
