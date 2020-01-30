@@ -13,20 +13,22 @@ double dRandom( int a, int b ) // вещественное из [a,b]
 }
 
 //функция вывода массима на печать
-void m_out(int* a, int n) {
-    for (int i = 1; i <= n; i++)
+void m_out(int* a, int size) {
+    cout << "Исходный массив: ";
+    for (int i = 1; i <= size; i++)
         cout << a[i] << " ";
     cout << endl;
 }
-//ункция вывода массима в обратном порядке на печать
-void m_turn_out(int* a, int n) {
-    for (int i = 1; i <= n / 2; i++)
-        swap(a[i], a[n - i + 1]); //Процедура swap производит обмен значений двух объектов, & - ссылка на указатель а
+//Функция вывода массима в обратном порядке на печать
+void m_turn_out(int* a, int size) {
+    for (int i = 1; i <= size / 2; i++)
+        swap(a[i], a[size - i + 1]); //Процедура swap производит обмен значений двух объектов, & - ссылка на указатель а
 }
 
-void buble(int* a, int n) {
+//Функция сортировки пузырьковым методом
+void m_buble(int* a, int size) {
     int sravn = 0, perest = 0;
-    for (int i = n; i >= 1; i--)
+    for (int i = size; i >= 1; i--)
         for (int j = 0; j < i; j++) {
             sravn++;
             if (a[j] > a[j + 1]) {
@@ -35,15 +37,39 @@ void buble(int* a, int n) {
             }
         }
     cout << "Метод пузырьком: ";
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= size; i++)
+        cout << a[i] << " ";
+    cout << "Сравнений: " << sravn << "; " << "Перестановок: " << perest << endl;
+}
+// Функция сортировки прямым выбором
+void m_select(int* a, int size)
+{
+        int min, tmp, sravn = 0, perest = 0; // минимальный элемент и для обмена
+        for (int i = 0; i < size - 1; i++)
+        {
+            min = i; // индекс текущего элемента
+            // ищем минимальный элемент чтобы поместить на место i-ого
+            for (int j = i + 1; j < size; j++)  // для остальных элементов после i-ого
+            {
+                if (a[j] < a[min]) // если элемент меньше минимального,
+                    min = j;       // запоминаем его индекс в min
+                    sravn++;
+            }
+            tmp = a[i];      // меняем местами i-ый и минимальный элементы
+            a[i] = a[min];
+            a[min] = tmp;
+            perest++;
+        }
+    cout << "Прямым выбором: ";
+    for (int i = 1; i <= size; i++)
         cout << a[i] << " ";
     cout << "Сравнений: " << sravn << "; " << "Перестановок: " << perest << endl;
 }
 
 int main()
 {
-    srand(time(0));
     setlocale(LC_ALL, "russian");
+    srand(time(0));
     int r;
     int* m = new int[r]; //создаем указатель на массив целочисленного типа
     //int* arr2 = new int[n];
@@ -56,9 +82,12 @@ int main()
     //arr[r] = iRandom(1,9);
 
     m_out(m,r);//вывод массива на печать (случайный порядок)
+    m_buble(m,r);
+    m_select(m,r);
+
     m_turn_out(m,r);
     m_out(m,r);//вывод массива на печать (обратный порядок)
-    buble(m,r);
+
 
 /*    const int n = 13; // количество элементов в массиве
     int a[n], i; // массив целых чисел
