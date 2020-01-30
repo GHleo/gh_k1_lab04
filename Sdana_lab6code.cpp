@@ -13,6 +13,7 @@ struct I_print {
 
 };
 
+
 // Печать таблицы
 void PrintTabl(I_print i_prn[], int k)
 {
