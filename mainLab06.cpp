@@ -1,7 +1,13 @@
+#include <string>
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <cstring>
+
 using namespace std;
+
+//определяем новый пользовательский тип, PF - указатель на функцию
+typedef double(*PF)(double);
 
 // определяем структуру для печати таблицы результатов (из методички)
 struct I_print{	//данные для печати результатов интегрирования
@@ -51,9 +57,6 @@ void PrintTabl(I_print i_prn[],int k)
     cout<<setw(wn[m-1])<<char(126)<<setfill(' ')<<endl;
 }
 
-//определяем новый пользовательский тип, PF - указатель на функцию
-typedef void (*PF)(int);
-
 // Функция 1 (f1 = x)
 double f_1(double x) {
     return x;
@@ -75,21 +78,39 @@ double f_4(double x) {
 }
 
 // Вычисление интеграла методом прямоугольников
-double f_InRect(PF f, double a, double b, double eps, int& n) {
+double f_InRect(PF func, double a, double b, double eps, int& n) {
     n = 1;
     double s1, s2, dx = b - a, x = a + dx / 2.0;
-    s1 = f(x) * dx;
+    s1 = func(x) * dx;
     do {
         if (n > 1) s1 = s2;
         n *= 2;
         s2 = 0;
         x = a + dx / (2.0 * n);
         for (int i = 0; i < n; ++i) {
-            s2 += f(x) * (dx / n);
+            s2 += func(x) * (dx / n);
             x = x + dx / n;
         }
     } while (fabs(s1 - s2) > eps);
     return s2;
+}
+
+// Вычисление интеграла методом трапеций
+double f_InTrap(PF func, double a, double b, double eps, int& n) {
+    n = 4;
+    double s1 = (func(a) + func(b)) / 2.0, s2 = func((a + b) / 2.0);
+    double s = 1, sn = 101;
+    while (fabs(sn - s) > eps) {
+        sn = s;
+        double dx = (b - a) / n;
+        for (int i = 0; i < n / 2; ++i) {
+            s1 += func(a + (2 * i + 1) * dx);
+        }
+        s = dx * (s1 + s2);
+        n *= 2;
+    }
+    return s;
+
 }
 
 int main()
@@ -114,19 +135,37 @@ int main()
       arr[3].i_toch = b * atan(b) - a * atan(a) - (log(b * b + 1) - log(a * a + 1)) / 2.0;
 
     // Метод прямоугольников
-    printf("Rectangle method, %.6f <= x <= %.6f\n", a, b);
-
+    // printf("Rectangle method, %.6f <= x <= %.6f\n", a, b);
+    cout << "Метод прямоугольников = " << a <<  " <= x <= " << b << endl;
+    //Вычисления выполнить для пяти значений точности: 0.01, 0.001, 0.0001, 0.00001 и 0.000001.
     double eps[5] = { 1e-2, 1e-3, 1e-4, 1e-5, 1e-6 };
-    for (int p = 0; p < 5; ++p) {
-        cout << "Eps = " << eps[p] << endl;
+    for (int  e = 0; e < 5; ++e) {
+        cout << "Точность = " << eps[e] << endl;
         for (int i = 0; i < 4; ++i) {
-            if (i == 0) arr[i].i_sum = IntRect(f_1, a, b, eps[p], arr[i].n);
-            else if (i == 1) arr[i].i_sum = IntRect(f_2, a, b, eps[p], arr[i].n);
-            else if (i == 2) arr[i].i_sum = IntRect(f_3, a, b, eps[p], arr[i].n);
-            else  arr[i].i_sum = IntRect(f_4, a, b, eps[p], arr[i].n);
+            if (i == 0) arr[i].i_sum = f_InRect(f_1, a, b, eps[e], arr[i].n);
+            if (i == 1) arr[i].i_sum = f_InRect(f_2, a, b, eps[e], arr[i].n);
+            if (i == 2) arr[i].i_sum = f_InRect(f_3, a, b, eps[e], arr[i].n);
+            if (i == 3) arr[i].i_sum = f_InRect(f_4, a, b, eps[e], arr[i].n);
         }
+        PrintTabl(arr, 4);
+        cout << endl;
+    }
 
-      PrintTabl(arr, 4);
+    // Метод трапеций
+    //printf("Trapezoidal method, %.6f <= x <= %.6f\n", a, b);
+    cout << "Метод трапеций = " << a <<  " <= x <= " << b << endl;
+    for (int e = 0; e < 5; ++e) {
+        cout << "Точность = " << eps[e] << endl;
+        for (int i = 0; i < 4; ++i) {
+            if (i == 0) arr[i].i_sum = f_InTrap(f_1, a, b, eps[e], arr[i].n);
+            if (i == 1) arr[i].i_sum = f_InTrap(f_2, a, b, eps[e], arr[i].n);
+            if (i == 2) arr[i].i_sum = f_InTrap(f_3, a, b, eps[e], arr[i].n);
+            if (i == 3) arr[i].i_sum = f_InTrap(f_4, a, b, eps[e], arr[i].n);
+        }
+        PrintTabl(arr, 4);
+        cout << endl;
+    }
+
 
     return 0;
-        };
+}
