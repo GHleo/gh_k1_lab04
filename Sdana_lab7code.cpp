@@ -205,22 +205,22 @@ void solve() {
 	cout << endl << "Количество слов в словаре: ";
 	cout << AmountCodeWords() << endl;
 	cout << endl << "Исходный текст: " << endl;
-	TextRusCode();
-	cout << endl << endl << "Закодированный текст: " << endl;
+TextRusCode();
+/*		cout << endl << endl << "Закодированный текст: " << endl;
 	ReadCodeText();
 	cout << endl << endl << "Декодированный текст: " << endl;
 	DecodeText();
 	cout << endl << endl << "Таблица символов: " << endl;
 	PrintTable();
-	CheckSymbol();
+	CheckSymbol();*/
 }
 
 int main()
 {
-	system("chcp 1251");
+	//system("chcp 1251");
 
 	solve();
 
-	system("pause");
+	//system("pause");
 	return 0;
 }

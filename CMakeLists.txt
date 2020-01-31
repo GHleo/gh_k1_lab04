@@ -13,6 +13,6 @@ add_executable(gh_k1_lab04
         #Sdana_lab4code.cpp
         #Sdana_lab5code.cpp
         #Sdana_lab6code.cpp
-        #Sdana_lab7code.cpp
+        #dana_lab7code.cpp
         main_lab07.cpp
         )
