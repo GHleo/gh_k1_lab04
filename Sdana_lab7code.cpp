@@ -171,7 +171,7 @@ void CheckSymbol() {
 
 	cout << "Хотите ли вы получить отчет по конкретному символу?(y or n): ";
 	cin >> YesNo;
-	while (YesNo == 'y' || YesNo == 'Y' || YesNo == 'д' || YesNo == 'Д') {
+	while (YesNo == 'y' || YesNo == 'Y') {
 		cout << "Введите нужный символ: ";
 		cin >> MyChar;
 		cout << endl << "Символ " << MyChar << " кодируется следующими символами: " << endl;
