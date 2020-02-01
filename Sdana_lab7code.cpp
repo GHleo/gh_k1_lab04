@@ -205,8 +205,8 @@ void solve() {
 	cout << endl << "Количество слов в словаре: ";
 	cout << AmountCodeWords() << endl;
 	cout << endl << "Исходный текст: " << endl;
-TextRusCode();
-/*		cout << endl << endl << "Закодированный текст: " << endl;
+/*    TextRusCode();
+		cout << endl << endl << "Закодированный текст: " << endl;
 	ReadCodeText();
 	cout << endl << endl << "Декодированный текст: " << endl;
 	DecodeText();
@@ -218,7 +218,7 @@ TextRusCode();
 int main()
 {
 	//system("chcp 1251");
-
+    CheckSymbol();
 	solve();
 
 	//system("pause");

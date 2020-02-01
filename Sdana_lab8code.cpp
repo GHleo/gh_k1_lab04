@@ -44,7 +44,7 @@ void InMatrB(double** b) {
 
 // Матрица A
 void solveA() {
-	system("mode con cols=5000");
+	//system("mode con cols=5000");
 	int n, x, YesNo;
 
 	cout << "Введите n: ";
@@ -97,6 +97,6 @@ int main() {
 	else
 		solveA();
 
-	system("pause");
+	//system("pause");
 	return 0;
 }
