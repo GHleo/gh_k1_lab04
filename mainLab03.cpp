@@ -17,6 +17,7 @@ double dfx(double x) { return 1+sin(x); }
 typedef double(*func)(double x); // задание типа function
 
 double metodN(func f_3, func dfx, double x0) {
+    n=0;
     double x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
     while (fabs(x1 - x0) > eps) { // пока не достигнута точность 0.000001
         n++;
