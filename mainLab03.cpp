@@ -16,14 +16,17 @@ double f_3(double x){
 double dfx(double x) { return 1+sin(x); }
 typedef double(*func)(double x); // задание типа function
 
-double metodN(func f_3, func dfx, double x0) {
+double metodN(func f_3, func dfx, long double x0) {
     n=0;
-    long double x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
-    cout << "x1 = " << x1 << endl;
-    while (abs(x1 - x0) > eps) { // пока не достигнута точность 0.000001
+   long double x1=0.0;
+    x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
+
+    while (fabs(x1 - x0) > 0.000001) { // пока не достигнута точность 0.000001
+        cout << "x1 = " << x1-x0 << endl;
         n++;
         x0 = x1;
         x1 = x1 - f_3(x1) / dfx(x1); // последующие приближения
+        cout << "x1 nize = " << x1-x0 << endl;
     }
     return x1;
 }
