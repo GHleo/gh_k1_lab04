@@ -1,6 +1,3 @@
-/*#include &lt;time.h&gt; // time
-#include &lt;stdlib.h&gt; // srand, rand
-#include &lt;iostream&gt;*/
 #include <iostream>
 #include <ctime>
 #include <stdio.h>
@@ -65,13 +62,12 @@ int main()
 {
     setlocale(LC_ALL, "russian");
     srand(time(0));
-    int r;
-    int* m = new int[r]; //создаем указатель на массив целочисленного типа
-    int* m_tmp = new int[r]; //сохраняем копию массива
-    //int* arr2 = new int[n];
+    int r=0;
 
     cout << "Введите кол-во элементов массива: ";
     cin >> r;
+    int* m = new int[r]; //создаем указатель на массив целочисленного типа
+    int* m_tmp = new int[r]; //сохраняем копию массива
 
     for (int i = 1; i <= r; i++)
         m[i] = rand() % 100;         //диапозон от  0 to 99
