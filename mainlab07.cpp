@@ -170,12 +170,12 @@ int main()
     int k = 0;
     char inChar;
 
-    cout << Amount_Words() << endl;
+/*    cout << Amount_Words() << endl;
 
     cout << "Введите нужный символ: ";
     cin >> inChar;
     cout << endl << "Символ " << inChar << " кодируется следующими символами: " << endl;
-    Symbol(inChar);
+    Symbol(inChar);*/
 
     cout << "Сдвиг: ";
     cin >> k;
