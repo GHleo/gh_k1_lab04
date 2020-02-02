@@ -206,14 +206,14 @@ void solve() {
 	cout << endl << "Количество слов в словаре: ";
 	cout << AmountCodeWords() << endl;
 	cout << endl << "Исходный текст: " << endl;
-/*    TextRusCode();
+    TextRusCode();
 		cout << endl << endl << "Закодированный текст: " << endl;
 	ReadCodeText();
 	cout << endl << endl << "Декодированный текст: " << endl;
 	DecodeText();
 	cout << endl << endl << "Таблица символов: " << endl;
 	PrintTable();
-	CheckSymbol();*/
+	CheckSymbol();
 }
 
 int main()
