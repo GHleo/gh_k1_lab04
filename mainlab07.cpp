@@ -190,25 +190,3 @@ int main()
 
     return 0;
 }
-
-
-/*const int len = 81;
-char word[len],line[len];//массив для слова и для строки
-cout << " Input the word for search:  ";
-cin >> word;
-int l_word = strlen(word);//получаем длину слова
-ifstream fin("../text.txt",ios::in);
-if (!fin) {
-cout << "Error of file opening."<< endl;
-return 1; }
-int count =0;
-while (fin.getline(line, len)) {
-char *p = line;
-//strstr() возвращает указатель на первое вхождение в строку
-while( p = strstr(p, word)) {
-cout << "совпадение: " << p << endl;
-p += l_word;
-count++;
-}
-}
-cout << count << endl;*/

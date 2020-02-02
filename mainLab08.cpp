@@ -44,7 +44,7 @@ void Matr_print(double** a, int n, int m) {
 
 int main() {
     int n, x;
-    char inAB;
+    char inAB,inYN;
     cout << "Введите размерность N: ";
     cin >> n;
     cout << "Введите любое число x: ";
@@ -63,6 +63,13 @@ int main() {
 
         MatrA_fill(A, n, x);
         Matr_print(A, n, n);
+
+        cout << "Использовать научный формат? Y или N: ";
+        cin >> inYN;
+        if ((inAB == 'Y') || (inAB == 'N')) {
+            cout << fixed << setprecision(8);
+            Matr_print(A, n, n);
+        }
     }
     // Создание матрицы В
     if ((inAB == 'B') || (inAB == 'b')) {
