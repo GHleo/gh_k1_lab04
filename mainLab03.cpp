@@ -13,7 +13,10 @@ double f_3(double x){
     if (con == 2) return x - 10 * cos(x);
 }
 // производная функции
-double dfx(double x) { return 1+sin(x); }
+double dfx(double x) {
+    if (con == 1) return 1+sin(x);
+    if (con == 2) return 10*sin(x)+1;
+}
 typedef double(*func)(double x); // задание типа function
 
 double metodN(func f_3, func dfx, long double x0) {
@@ -21,20 +24,23 @@ double metodN(func f_3, func dfx, long double x0) {
    long double x1=0.0;
     x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
 
-    while (fabs(x1 - x0) > 0.000001) { // пока не достигнута точность 0.000001
-        cout << "x1 = " << x1-x0 << endl;
+    while (fabs(x1 - x0) > eps) { // пока не достигнута точность 0.000001
+//        cout << "x1 = " << x1-x0 << endl;
         n++;
         x0 = x1;
         x1 = x1 - f_3(x1) / dfx(x1); // последующие приближения
-        cout << "x1 nize = " << x1-x0 << endl;
+//        cout << "x1 nize = " << x1-x0 << endl;
     }
     return x1;
 }
+
+//Метод простых итераций
 void metodSI(double a) {
     int i=0;
     for (x = a; x <= 1; x += eps) {
         i += 1;
         y = f_3(x);
+        cout << "y  = " << y << endl;
         if (fabs(y) <= eps) {
             cout << "Метод простых итераций. Корень = " << x << endl;
             cout << "Метод простых итераций. Количество итераций = " << i << endl;
@@ -80,6 +86,7 @@ int main() {
     cout << "Метод половинного деления. Количество итераций = " << h << endl;
     cout << "----------------------------------------------------------------------"<< endl;
     metodSI(a); // Метод простых итераций
+
 
     return 0;
 }
