@@ -7,11 +7,6 @@
 
 using namespace std;
 
-double dRandom( int a, int b ) // вещественное из [a,b]
-{
-    return a + ( b - a ) * rand() / (double)RAND_MAX;
-}
-
 //функция вывода массима на печать
 void m_out(int* a, int size) {
    // cout << "Исходный массив: ";

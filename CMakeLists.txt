@@ -7,8 +7,8 @@ add_executable(gh_k1_lab04
         #mainLab02.cpp
         #lab2code.cpp
         #mainLab03.cpp
-    mainLab04.cpp
-        #mainLab05.cpp
+    #mainLab04.cpp
+        mainLab05.cpp
         #mainLab06.cpp
         #obmen.cpp
        #temp.cpp
