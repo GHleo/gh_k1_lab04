@@ -11,7 +11,7 @@ typedef double(*PF)(double);
 
 // определяем структуру для печати таблицы результатов (из методички)
 struct I_print{	//данные для печати результатов интегрирования
-    char* name;//название функции
+    string name;//название функции
     double i_sum;	//значение интегральной суммы
     double i_toch;	//точное значение интеграла
     int n;	//число разбиений области интегрирования при котором достигнута требуемая точность
@@ -22,10 +22,10 @@ void PrintTabl(I_print i_prn[],int k)
 {
     const int m=4;//число столбцов таблицы
     int wn[m]={12,18,18,18};//ширина столбцов таблицы
-    char *title[m]={"Function","Integral","IntSum","N "};
+    string title[m]={"Function","Integral","IntSum","N "};
     int size[m];
     for(int i=0;i<m;i++)
-        size[i]=strlen(title[i]);
+        size[i]=title[i].length();
 //шапка таблицы
     cout<<char(124)<<setfill(char(61));
     for(int j=0;j<m-1;j++)
@@ -44,8 +44,8 @@ void PrintTabl(I_print i_prn[],int k)
             cout<<setfill(char(126))<<setw(wn[j])<<char(124);
         cout<<setw(wn[m-1])<<char(124)<<setfill(' ')<<endl;
 
-        cout<<char(124)<<setw((wn[0]-strlen(i_prn[i].name))/2)<<' '<<i_prn[i].name
-            <<setw((wn[0]-strlen(i_prn[i].name))/2)<<char(124);
+        cout<<char(124)<<setw((wn[0]-(i_prn[i].name).length()) /2)<<' '<<i_prn[i].name
+            <<setw((wn[0]-(i_prn[i].name).length()) /2)<<char(124);
         cout<<setw(wn[1]-1)<<setprecision(10)<<i_prn[i].i_toch<<char(124)
             <<setw(wn[2]-1)<<i_prn[i].i_sum<<setprecision(6)<<char(124)
             <<setw(wn[3]-1)<<i_prn[i].n<<char(124)<<endl;
