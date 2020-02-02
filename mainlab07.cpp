@@ -102,7 +102,7 @@ void Out_Cesar(int k) {
     fin.close();
     fout.close();
 }
-//Кол-во слов в кодовом блокноте
+// Функция считывания слов из файла
 int Amount_Words() {
     string word;
     int i = 0;

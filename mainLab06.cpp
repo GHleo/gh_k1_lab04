@@ -50,7 +50,6 @@ void PrintTabl(I_print i_prn[],int k)
             <<setw(wn[2]-1)<<i_prn[i].i_sum<<setprecision(6)<<char(124)
             <<setw(wn[3]-1)<<i_prn[i].n<<char(124)<<endl;
     }
-//низ таблицы
     cout<<char(126)<<setfill(char(126));
     for(int j=0;j<m-1;j++)
         cout<<setw(wn[j])<<char(126);
@@ -135,7 +134,6 @@ int main()
       arr[3].i_toch = b * atan(b) - a * atan(a) - (log(b * b + 1) - log(a * a + 1)) / 2.0;
 
     // Метод прямоугольников
-    // printf("Rectangle method, %.6f <= x <= %.6f\n", a, b);
     cout << "Метод прямоугольников = " << a <<  " <= x <= " << b << endl;
     //Вычисления выполнить для пяти значений точности: 0.01, 0.001, 0.0001, 0.00001 и 0.000001.
     double eps[5] = { 1e-2, 1e-3, 1e-4, 1e-5, 1e-6 };
@@ -152,7 +150,6 @@ int main()
     }
 
     // Метод трапеций
-    //printf("Trapezoidal method, %.6f <= x <= %.6f\n", a, b);
     cout << "Метод трапеций = " << a <<  " <= x <= " << b << endl;
     for (int e = 0; e < 5; ++e) {
         cout << "Точность = " << eps[e] << endl;
