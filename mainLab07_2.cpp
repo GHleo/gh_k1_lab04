@@ -111,7 +111,7 @@ void Find_symbol(char CheckChar) {
     arrcode = Read_CodePad();
 
     //Посимвольное считывание исходного текста
-    ifstream fin("../TextRus.txt");
+    ifstream fin("../Text_codeC.txt");
 
     while (!fin.eof()) {
         if (counter > i)
