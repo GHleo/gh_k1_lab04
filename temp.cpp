@@ -268,3 +268,17 @@ int main() {
     return 0;
 }
 
+// поиск корня
+/*   int i=0;
+        while (DX > 0.000001) {
+            i = XN;
+            while (i <= XK) {
+                if (f_24(i) > 0) {
+                    XN = i - DX;
+                    break;
+                }
+                i += DX;
+            }
+            DX = DX / 10;
+            cout << " DX = " <<DX<<" XX = "<< XK << endl;
+        }*/

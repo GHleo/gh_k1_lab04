@@ -27,10 +27,7 @@ double metodHalf(double a, double b, double eps) {
 }
 
 int main() {
-    const double gRatio = (1 + sqrt(5)) / 2; // "Золотое" число
-    double x, XN, XK, DX; //x -аргумент функции; XN, XK - начальное и конечное значение для аргумента соответсвенно; DX - шаг
-    double aa,bb,eps; //концы отрезка и точность
-    double d1,d2, do1,do2; // Точки, делящие текущий отрезок в отношении золотого сечения
+    double x, XN, XK, DX, eps; //x -аргумент функции; XN, XK - начальное и конечное значение для аргумента соответсвенно; DX - шаг
 
     cout << "Вычисления для функции: 1 – x + x3/6 – x5/120 –sin(x)" << endl;
     cout << "Введите начальное значение для аргумента: " << endl;
@@ -46,47 +43,11 @@ int main() {
        cout.width(18);// cout.width - задаем ширину столбца для значения (член функции)
        cout << setprecision(10) << f_24(x) << endl;// задаем точность после запятой
     }
-//Нахождение экстремумов функции
     cout << "----------------------------------" << endl;
-/*    cout << "Вводим границу поиска [a, b] " << endl;
-    cout<<"a = "<< endl;
-    cin>>a;
-    cout<<"b = "<< endl;
-    cin>>b;*/
     cout<<"Введите точность eps = "<< endl;
     cin>>eps;
 
-//Нахождение минимума функции
-    //Шаг определяем по точности вычислений
-    //DX = (b - a)*(eps/10);//Мин шаг точность/10
-/*    aa = XN;
-    bb = XK;
-    double min = f_24(aa);
-    //eps = fabs(a - b) / 100; //делим отрезок на 100 частей
-    for (aa += eps; aa <= bb; aa += eps)
-    {
-        if (f_24(aa) < min)
-            min = f_24(aa);
-    }
-    cout << "min = " << min << endl;*/
-
-   // поиск корня
-/*   int i=0;
-        while (DX > 0.000001) {
-            i = XN;
-            while (i <= XK) {
-                if (f_24(i) > 0) {
-                    XN = i - DX;
-                    break;
-                }
-                i += DX;
-            }
-            DX = DX / 10;
-            cout << " DX = " <<DX<<" XX = "<< XK << endl;
-        }*/
-
     cout << "Корень функции = " << metodHalf(XN, XK,eps) << endl;
-
 
     return 0;
     }
