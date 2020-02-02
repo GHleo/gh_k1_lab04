@@ -24,11 +24,11 @@ int fact(int n) {
 int main() {
     setlocale(LC_ALL, "RUS");
 
-    cout << "x" << "  " << "Y(x)" << " " << "S(x)" << "  "  << "n" << endl;
+    cout << "x" << "    " << "Y(x)" << "       " << "S(x)" << "  "  << "n" << endl;
 
     //float s, y,  k, d;
     // s - сумма Тейлора; d- факториал; k - значение предыдущего члена
-    long double x,t,s,y,eps=0.000001;
+    double ii,x,t,s,y,eps=0.000001;
     int  n;
 
     for (x = 0.0; x <= 1.0; x += 0.2) {
@@ -36,18 +36,20 @@ int main() {
         s = x;
         t = 1.0;
 
-        while (fabs(t) >= eps) {
-            cout << "в цикле while fabs(t) = "<< fabs(t) << " x = " << x <<endl;
-            t = pow(-1, n) * ((2 * pow(n, 2) + 1)/fact(2*n)) * (pow(x, 2 * n));//ряд Тейлора
+        while (abs(t) > eps) {
+           // cout << "в цикле while fabs(t) = "<< fabs(t) << " x = " << x <<endl;
+            t = pow(-1, n) * ((2 * pow(n, 2) + 1)/(2*fact(n))) * (pow(x, 2 * n));//ряд Тейлора
             s += t;
 
             cout.precision(8);
-            cout << "в цикле while смотим  n = "<< n << " и t = " << t << " и s =" << s <<endl;
+            //cout << "в цикле while смотим  n = "<< n << " и t = " << t << " и s =" << s <<endl;
             n += 1;
         }
 
-        y = 1 - (pow(x, 2) / 2) * cos(x) - (x / 2) * sin(x);//вычисление функции
-
+        y = (1 - (pow(x, 2) / 2) * cos(x)) - ((x / 2) * sin(x));//вычисление функции
+/*        cout << "cos(x) = "<< cos(x)  <<endl;
+        ii = (pow(x, 2) / 2);
+        cout << "(pow(x, 2) / 2) = "<< ii << endl;*/
         cout.setf(ios::fixed);
 
         cout.precision(1);
