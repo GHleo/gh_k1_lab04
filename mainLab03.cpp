@@ -18,17 +18,18 @@ typedef double(*func)(double x); // задание типа function
 
 double metodN(func f_3, func dfx, double x0) {
     n=0;
-    double x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
+    long double x1 = x0 - f_3(x0) / dfx(x0); // первое приближение
+    cout << "x1 = " << x1 << endl;
     while (fabs(x1 - x0) > eps) { // пока не достигнута точность 0.000001
         n++;
         x0 = x1;
         x1 = x0 - f_3(x0) / dfx(x0); // последующие приближения
     }
-    cout << "x1 = " << x1 << endl;
+
     return x1;
 }
 void metodSI(double a) {
-    int i;
+    int i=0;
     for (x = a; x <= 1; x += eps) {
         i += 1;
         y = f_3(x);
