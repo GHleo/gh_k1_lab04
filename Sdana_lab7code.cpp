@@ -19,6 +19,7 @@ int AmountCodeWords() {
 	ifstream code_pad("../CodePad.txt");
 	while (!code_pad.eof()) {
 		code_pad >> buffer;
+
 		n++;
 	}
 	code_pad.seekg(0);

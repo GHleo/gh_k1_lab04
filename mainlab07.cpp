@@ -3,6 +3,9 @@
 #include <cmath>
 #include <fstream>
 
+#include <stdio.h>
+
+
 using namespace std;
 
 void In_Cesar(int k) {
@@ -99,11 +102,81 @@ void Out_Cesar(int k) {
     fin.close();
     fout.close();
 }
+//Кол-во слов в кодовом блокноте
+int Amount_Words() {
+    string word;
+    int i = 0;
+    ifstream in_code_pad("../text.txt");
+    while (!in_code_pad.eof()) {
+         in_code_pad >> word;
+         i++;
+    }
+    in_code_pad.close();
+    return i;
+}
+//Считывание кодового блокнота
+int* ReadCodePad() {
+    ifstream file("../CodePad.txt");
+    string buffer;
+    int shift, n;
+    n = Amount_Words();
+    int* arr = new int[n];
 
+    for (int i = 0; !file.eof(); i++) {
+        shift = 0;
+        file >> buffer;
+        for (int j = 0; j < buffer.length(); j++)
+            shift += abs((int)buffer[j]);
+        arr[i] = shift;
+    }
+
+    file.close();
+    return arr;
+}
+//Поиск кодирования символа
+void Symbol(char CheckChar) {
+    char ch; int n, counter = 1;
+
+    n = Amount_Words();
+    int* arrcode = new int[n];
+    arrcode = ReadCodePad();
+
+    //Посимвольное считывание исходного текста
+    ifstream file("../text.txt");
+
+    while (!file.eof()) {
+        if (counter > n)
+            counter -= n;
+
+        file.get(ch);
+
+        if (file.eof())
+            break;
+
+        //Вывод кодов для символа
+        if (ch == CheckChar) {
+            cout << (char)((int)ch + arrcode[counter]) << " ";
+            counter++;
+        }
+
+    };
+
+    file.close();
+    delete []arrcode;
+}
 int main()
 {
    // setlocale(LC_ALL, "ru");
     int k = 0;
+    char inChar;
+
+    cout << Amount_Words() << endl;
+
+    cout << "Введите нужный символ: ";
+    cin >> inChar;
+    cout << endl << "Символ " << inChar << " кодируется следующими символами: " << endl;
+    Symbol(inChar);
+
     cout << "Сдвиг: ";
     cin >> k;
 

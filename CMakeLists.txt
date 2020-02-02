@@ -7,7 +7,7 @@ add_executable(gh_k1_lab04
         #mainLab02.cpp
         #lab2code.cpp
         #mainLab03.cpp
-    #mainLab04.cpp
+    mainLab04.cpp
         #mainLab05.cpp
         #mainLab06.cpp
         #obmen.cpp
@@ -18,5 +18,5 @@ add_executable(gh_k1_lab04
         #Sdana_lab7code.cpp
         #Sdana_lab8code.cpp
         #mainlab07.cpp
-        mainlab08.cpp
+        #mainlab08.cpp
         )

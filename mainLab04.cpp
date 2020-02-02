@@ -7,7 +7,23 @@ using namespace std;
 
 // расчетная функция
 double f_24(double x){
-    return 1 - x + x*3/6 - x*5/120 - sin(x);
+    return 1 - x + pow(x,3)/6 - pow(x,5)/120 - sin(x);
+}
+// Половинное деление
+double metodHalf(double a, double b, double eps) {
+    double half;
+    int h;
+    half = (a + b) * 0.5;
+    while ((fabs(a - b) > eps) && (f_24(half) != 0))
+    {
+        if (f_24(a) * f_24(half) < 0)
+            b = half;
+        else
+            a = half;
+        half = (a + b) / 2;
+        h++;
+    }
+    return half;
 }
 
 int main() {
@@ -55,7 +71,7 @@ int main() {
     cout << "min = " << min << endl;*/
 
    // поиск корня
-   int i=0;
+/*   int i=0;
         while (DX > 0.000001) {
             i = XN;
             while (i <= XK) {
@@ -66,9 +82,10 @@ int main() {
                 i += DX;
             }
             DX = DX / 10;
-        }
+            cout << " DX = " <<DX<<" XX = "<< XK << endl;
+        }*/
 
-    cout << "Корень функции = " << XN << endl;
+    cout << "Корень функции = " << metodHalf(XN, XK,eps) << endl;
 
 
     return 0;
