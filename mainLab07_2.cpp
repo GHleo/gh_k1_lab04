@@ -13,7 +13,7 @@ int Amount_CWords() {
         c_pad >> buf;
         i++;
     }
-    c_pad.seekg(0);
+    c_pad.seekg(0);//возвращает указатель в начало файла
     c_pad.close();
     return i;
 }
@@ -36,8 +36,10 @@ int* Read_CodePad() {
     for (int i = 0; !fin.eof(); i++) {
         shift = 0;
         fin >> buff;
-        for (int j = 0; j < buff.length(); j++)
-            shift += abs((int)buff[j]);
+        //Величина сдвига для каждой позиции в исходном тексте - сумма (по модулю 256) кодов символов слова кодового
+        //блокнота, стоящего в блокноте на той же позиции.
+        for (int j = 0; j < buff.length(); j++)//цикл по полученнуму слову
+            shift += abs((int)buff[j]);//получаем код символ как десятечное число
         arr[i] = shift;
     }
 
@@ -63,7 +65,7 @@ void Text_codeC() {
     //Посимвольное считывание исходного текста
     ifstream fin("../Text_codeC.txt");
     ofstream codeC("../Text_encryptC.txt");
-   // ofstream c_char("../out_char.txt");
+    ofstream c_char("../out_char.txt");
 
     while (!fin.eof()) {
         if (counter > i)
@@ -91,10 +93,10 @@ void Text_codeC() {
 
     };
 
-/*    for (int i = 0; i < 255; i++) {
+    for (int i = 0; i < 255; i++) {
         if (arr[i] == '<') break;
         c_char << arr[i] << " - " << arr1[i] << endl;
-    }*/
+    }
 
     fin.close();
     codeC.close();
@@ -102,42 +104,6 @@ void Text_codeC() {
     delete []arr_tmp;
 }
 
-//Поиск кодирования символа
-void Find_symbol(char CheckChar) {
-    char ch; int i, counter = 1;
-    bool isChar = false;
-
-    i = Amount_CWords();
-    int* arrcode = new int[i];
-    arrcode = Read_CodePad();
-
-    //Посимвольное считывание исходного текста
-    ifstream fin("../Text_codeC.txt");
-
-    while (!fin.eof()) {
-        if (counter > i)
-            counter -= i;
-
-        fin.get(ch);
-
-        if (fin.eof())
-            break;
-
-        //Вывод кодов для символа
-        if (ch == CheckChar) {
-            cout << (char)((int)ch + arrcode[counter]) << " ";
-            counter++;
-
-        }
-/*        else
-            isChar = true;*/
-    };
-/*    if (isChar == true)
-        cout << " true "; //"Нет такого символа в исходном тексте!" ;*/
-
-    fin.close();
-    delete []arrcode;
-}
 
 //Чтение закодированного текста из файла
 void Read_CodeText() {
@@ -169,6 +135,40 @@ void Decryption() {
     delete []arr;
 }
 
+//Поиск кодирования символа
+void Find_symbol(char CheckChar) {
+    char ch; int i, counter = 1;
+    bool isChar = false;
+    i = Amount_CWords();// получаем количество слов в словаре
+    int* arrcode = new int[i];//инициализация массива
+    arrcode = Read_CodePad(); //получаем заполненный массив с сумами кодов слов для получения значения для сдвига
+
+    //Посимвольное считывание исходного текста
+    ifstream fin("../Text_codeC.txt");
+    while (!fin.eof()) {
+        if (counter > i)
+            counter -= i;
+        fin.get(ch); // получить символ из файла
+        if (fin.eof())// для выхода из цикла while принудительно что бы не выполнился код ниже
+            break;
+        //Вывод кодов для символа
+        if (ch == CheckChar) {
+            //если найден символ в файле такой же как и введеный с клавиатуры то этот значение этого символа суммируем
+            //со значением полеченное из массива соответствующей позиции кодового блокнота и полученный символ выводим
+            //на печать
+            cout << (char)((int)ch + arrcode[counter]) << " ";
+            counter++;
+        }
+/*        else
+            isChar = true;*/
+    };
+/*    if (isChar == true)
+        cout << " true "; //"Нет такого символа в исходном тексте!" ;*/
+
+    fin.close();
+    delete []arrcode;
+}
+
 //Функция проверки информации о символе
 void get_symbol() {
     char in_char, y_n = 'y';
@@ -176,8 +176,7 @@ void get_symbol() {
         cout << "Введите символ для проверки: ";
         cin >> in_char;
         cout << endl << "Символ " << in_char << " кодируется следующими символами: " << endl;
-           Find_symbol(in_char);
-
+           Find_symbol(in_char);// вызываем функцию поиска символа
         cout << endl << endl << "Проверить символ еще символ? (y or n): ";
         cin >> y_n;
        }
