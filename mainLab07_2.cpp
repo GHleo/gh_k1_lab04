@@ -129,11 +129,11 @@ void Find_symbol(char CheckChar) {
             counter++;
 
         }
-        else
-            isChar = true;
+/*        else
+            isChar = true;*/
     };
-    if (isChar == true)
-        cout << " true "; //"Нет такого символа в исходном тексте!" ;
+/*    if (isChar == true)
+        cout << " true "; //"Нет такого символа в исходном тексте!" ;*/
 
     fin.close();
     delete []arrcode;
