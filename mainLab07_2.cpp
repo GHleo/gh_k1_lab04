@@ -63,7 +63,7 @@ void Text_codeC() {
     //Посимвольное считывание исходного текста
     ifstream fin("../Text_codeC.txt");
     ofstream codeC("../Text_encryptC.txt");
-    ofstream c_char("../out_char.txt");
+   // ofstream c_char("../out_char.txt");
 
     while (!fin.eof()) {
         if (counter > i)
@@ -91,20 +91,21 @@ void Text_codeC() {
 
     };
 
-    for (int i = 0; i < 255; i++) {
+/*    for (int i = 0; i < 255; i++) {
         if (arr[i] == '<') break;
         c_char << arr[i] << " - " << arr1[i] << endl;
-    }
+    }*/
 
     fin.close();
     codeC.close();
-    c_char.close();
+   // c_char.close();
     delete []arr_tmp;
 }
 
 //Поиск кодирования символа
 void Find_symbol(char CheckChar) {
     char ch; int i, counter = 1;
+    bool isChar = false;
 
     i = Amount_CWords();
     int* arrcode = new int[i];
@@ -126,9 +127,13 @@ void Find_symbol(char CheckChar) {
         if (ch == CheckChar) {
             cout << (char)((int)ch + arrcode[counter]) << " ";
             counter++;
-        }
 
+        }
+        else
+            isChar = true;
     };
+    if (isChar == true)
+        cout << " true "; //"Нет такого символа в исходном тексте!" ;
 
     fin.close();
     delete []arrcode;
