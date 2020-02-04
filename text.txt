@@ -1,2 +1,0 @@
-UTF can represent any character in the Unicode standard.
-Таблица содержит все 128 десятичных (10), восьмеричных (8), шестнадцатеричных (16) и символьных (символ).

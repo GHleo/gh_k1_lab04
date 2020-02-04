@@ -22,8 +22,8 @@ int Amount_CWords() {
 int find_char(char* m, char ch) {
     for (int i = 0; i < 255; i++)
         if (ch == m[i])
-            return i;
-    return -1;
+            return i; // если символ найден вернуть индекс этого символа
+    return -1; //если символа нет в массиве вернуть -1
 }
 // Функция для считывания кодового блокнота
 int* Read_CodePad() {
@@ -51,12 +51,13 @@ int* Read_CodePad() {
 void Text_codeC() {
     char ch; int i, counter = 0, k = 0;
 
-    i = Amount_CWords();
-    int* arr_tmp = new int[i];
-    arr_tmp = Read_CodePad();
+    i = Amount_CWords();// получить количество кодовых слов в кодовом блокноте
+    int* arr_tmp = new int[i]; //указатель на массив размерностью i (полученное количество слов из блокнота)
+    arr_tmp = Read_CodePad();//заполнить массив словами из кодового блокнота
     char arr[255];
     int arr1[255];
 
+    //заполнить
     for (int i = 0; i < 255; i++) {
         arr[i] = '<';
         arr1[i] = 0;
@@ -71,28 +72,32 @@ void Text_codeC() {
         if (counter > i)
             counter -= i;
 
-        fin.get(ch);
+        fin.get(ch); //получаем символ из файла (потока)
 
-        if (fin.eof())
+        if (fin.eof()) //если конец файла прерываем цикл while
             break;
 
         cout << ch;
-        if (find_char(arr, ch) == -1) {
-            arr[k] = ch;
-            arr1[k] = 1;
+       // вызываем функцию find_char объявленную выше для поиска символа в масссиве
+        if (find_char(arr, ch) == -1) { //если символ в массиве не найден заходим в цикл
+            arr[k] = ch; //добавить символ в массив arr с индексом "к"
+            arr1[k] = 1; //довавить 1 в массив arr1
             k++;
         }
         else {
-            arr[find_char(arr, ch)] = ch;
-            arr1[find_char(arr, ch)] += 1;
+            arr[find_char(arr, ch)] = ch; //функция find_char вернула индекс найденного символа и по этому индексу заносим символ "ch" в массив arr
+            arr1[find_char(arr, ch)] += 1;//функция find_char вернула индекс найденного символа и по этому индексу суммируем +1 (при инициализации в массив заносили 1)
         }
 
         //Посимвольное кодирование и запись в новый файл
+        //(int)ch - получаем код символа ch и суммируем его с кодом полученным из массива (код из кодовой таблицы)
+        // и записываем в поток codeC(файлText_encryptC.txt") новый символ (со сдвигом символ)
         codeC << (char)((int)ch + arr_tmp[counter]);
         counter++;
 
     };
 
+    //записываем в поток c_char файл ("out_char.txt") символ из исходного файла и его количество встречающееся в файле
     for (int i = 0; i < 255; i++) {
         if (arr[i] == '<') break;
         c_char << arr[i] << " - " << arr1[i] << endl;
@@ -100,7 +105,7 @@ void Text_codeC() {
 
     fin.close();
     codeC.close();
-   // c_char.close();
+    c_char.close();
     delete []arr_tmp;
 }
 
@@ -185,6 +190,7 @@ void get_symbol() {
 
 int main()
 {
+
    // system("chcp 1251");
    // вывод результатов по запрашиваемого символа
     get_symbol();
