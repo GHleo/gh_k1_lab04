@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(gh_k1_lab04
       #  mainlab07_2.cpp
         #mainLab02.cpp
-        mainLab07_2.cpp
+      # mainLab07_2.cpp
         #mainLab03.cpp
     #mainLab04.cpp
         #mainLab05.cpp
@@ -20,5 +20,5 @@ add_executable(gh_k1_lab04
         #lab07code.cpp
         #Sdana_lab8code.cpp
         #mainlab07.cpp
-        #mainlab08.cpp
+        mainlab08.cpp
         )
