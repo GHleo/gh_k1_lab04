@@ -6,8 +6,10 @@ using namespace std;
 int main()
 {
 	char ch;
-	int p = 0,i=0;
+	int p = 0,i=0, n=0;
 	int mas[256];
+	string word;
+    string arr[256];
 	for (int i = 0; i < 256; i++)
 		mas[i] = 0;
 
@@ -33,15 +35,27 @@ int main()
 			decod2 << char(mas[i]);
 		}
  	}
-
-    code.seekg(0,ios::end); //устанавливает позицию чтения из потока в положение, определяемое значением параметра. ios::end	Смещение от конца
-    int size=code.tellg();//tellg() определяет текущую позицию чтения из потока
+//--------------- Считавание с конца посимвольно -----------------------
+    cod.seekg(0,ios::end); //устанавливает позицию чтения из потока в положение, определяемое значением параметра. ios::end	Смещение от конца
+    int size=cod.tellg();//tellg() определяет текущую позицию чтения из потока
 
     for (int j=1; j<=size; j++)
-    { code.seekg(-j, ios::end);
-        ch=code.get();
-        cout <<ch;
+    { cod.seekg(-j, ios::end);
+        ch=cod.get();
+        cout << ch;
     }
+//--------------- Считавание с конца по словам -----------------------
+// извлекаем слова из потока в переменную String
+    while (cod >> word)
+    {
+        arr[n]=word;
+        cout<< word << '\n';
+        n +=1;
+
+    }
+    for ( int j = n - 1; j >= 0; j-- )
+        cout << arr[j] << endl;
+
 
     cod.close();
     decod.close();

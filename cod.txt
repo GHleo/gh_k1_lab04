@@ -1,1 +1,2 @@
 write r t v c
+read abc deg

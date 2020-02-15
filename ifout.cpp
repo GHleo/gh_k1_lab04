@@ -30,15 +30,7 @@ int main()
        //decod2 << decod.getline(s,N);
         cout << decod.get() << endl;
     }
-    char W[80];
-    while (!cod.eof())
-    {
-        cout << "xxxxx"<< endl;
-        cod.getline(W,80);
-        for (int i=strlen(W)-1;i>=0;i--)
-            decod2 <<W[i]<<endl;
 
-    }
     cod.close();
     decod.close();
 

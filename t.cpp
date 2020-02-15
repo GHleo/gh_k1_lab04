@@ -1,23 +1,35 @@
 #include <iostream>
-
+#include <string>
+#include <cmath>
 #include <fstream>
+#include <string>
 
 using namespace std;
-
 int main()
 {
-    char ch;
-    ifstream code ("../cod.txt");;
-    code.seekg(0,ios::end); //устанавливает позицию чтения из потока в положение, определяемое значением параметра. ios::end	Смещение от конца
-    int size=code.tellg();//tellg() определяет текущую позицию чтения из потока
+    const int len = 81;
+    char word[len], line[len];
+    int n = 0;
+    string word2;
+    string arr[8];
+/*    cout << "Input the word for search: ";
+    cin >>word;
+    int l_word = strlen(word);
+    cout << l_word<< endl;*/
 
-    for (int j=1; j<=size; j++)
-    { code.seekg(-j, ios::end);
-        ch=code.get();
-        cout <<ch;
+    ifstream fin(("../cod.txt"), ios::in);
+
+// извлекаем слова из потока в переменную String
+    while (fin >> word2)
+    {
+        arr[n]=word2;
+        cout<< word2 << '\n';
+        n +=1;
+
     }
+    cout << n << endl;
+    for ( int i = n - 1; i >= 0; i-- )
+        cout << arr[i] << endl;
 
-    code.close();
     return 0;
 }
-
