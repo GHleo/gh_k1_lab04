@@ -1,39 +1,13 @@
-#include<string>
-#include<fstream>
 #include <iostream>
+
+#include <fstream>
+
 using namespace std;
 
 int main()
 {
-	char ch;
-	int p = 0,i=0;
-	int mas[256];
-	for (int i = 0; i < 256; i++)
-		mas[i] = 0;
-
-
-	fstream decod;
-
-    ifstream cod ("../cod.txt");
-    decod.open("../decod.txt");
-    fstream decod2 ("../decod2.txt");
-    while (cod.get(ch))
-		{
-			p = int(ch);
-			mas[i] = p;
-			decod << p << endl;
-		i+=1;
-		}
-
-	for (int i = 0; i < 256; i++)
-
-	{
-		if (mas[i] > 0)
-		{
-			decod2 << char(mas[i]);
-		}
- 	}
-
+    char ch;
+    ifstream code ("../cod.txt");;
     code.seekg(0,ios::end); //устанавливает позицию чтения из потока в положение, определяемое значением параметра. ios::end	Смещение от конца
     int size=code.tellg();//tellg() определяет текущую позицию чтения из потока
 
@@ -43,11 +17,7 @@ int main()
         cout <<ch;
     }
 
-    cod.close();
-    decod.close();
-    decod2.close();
-	return 0;
+    code.close();
+    return 0;
 }
-
-
 

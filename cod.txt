@@ -1,1 +1,1 @@
-w r t v c
+write r t v c
