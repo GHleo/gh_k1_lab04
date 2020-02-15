@@ -20,5 +20,6 @@ add_executable(gh_k1_lab04
         #lab07code.cpp
         #Sdana_lab8code.cpp
         #mainlab07.cpp
-        mainlab08.cpp
+       # mainlab08.cpp
+        file_input_output.cpp
         )
