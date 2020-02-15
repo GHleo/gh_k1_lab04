@@ -6,33 +6,25 @@ using namespace std;
 int main()
 {
 	char ch;
-	int p = 0;
+	int p = 0,i=0;
 	int mas[256];
 	for (int i = 0; i < 256; i++)
 		mas[i] = 0;
 
 
-	;
-	ifstream cod;
-	ofstream decod2;
 	fstream decod;
-	
-	decod2.open("C:/Users/den/source/repos/ConsoleApplication12/decod2.txt");
-	cod.open("C:/Users/den/source/repos/ConsoleApplication12/cod.txt");
-	decod.open("C:/Users/den/source/repos/ConsoleApplication12/decod.txt",fstream::in | fstream::out);
-		while (cod.get(ch))
-		{
-			cout << ch << endl;
-			p = int(ch);
-			mas[p] = p;
-			decod << p << endl;
-			
-			
 
+    ifstream cod ("../cod.txt");
+    decod.open("../decod.txt");
+    fstream decod2 ("../decod2.txt");
+    while (cod.get(ch))
+		{
+			p = int(ch);
+			mas[i] = p;
+			decod << p << endl;
+		i+=1;
 		}
-	
-	cod.close();
-    decod.close();
+
 	for (int i = 0; i < 256; i++)
 
 	{
@@ -41,6 +33,21 @@ int main()
 			decod2 << char(mas[i]);
 		}
  	}
+
+    char W[80];
+
+    while(!cod.eof())
+    {
+        cout << "xxxxx";
+        cod.getline(W,80);
+        for (int i=strlen(W)-1;i>=0;i--)
+            cout<<W[i]<<endl;
+
+    }
+
+    cod.close();
+    decod.close();
+    decod2.close();
 	return 0;
 }
 

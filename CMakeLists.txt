@@ -22,4 +22,5 @@ add_executable(gh_k1_lab04
         #mainlab07.cpp
        # mainlab08.cpp
         file_input_output.cpp
+        #ifout.cpp
         )
